@@ -1,0 +1,19 @@
+{
+	"personen": [
+		{
+			"firstname": "Jan",
+			"lastname": "Krüger",
+			"salutation": "Mr."
+		},
+		{
+			"firstname": "Kurt",
+			"lastname": "Feller",
+			"salutation": "Mr."
+		},
+		{
+			"firstname": "Sandra",
+			"lastname": "Bert",
+			"salutation": "Mrs."
+		}
+	]
+}
