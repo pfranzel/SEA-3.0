@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 public class WebServerConfig {
 
 		@Bean
-		public Katze katze() {
-			return new Katze();
+		public Person person() {
+			return new Person();
 		}
 }

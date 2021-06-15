@@ -5,6 +5,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class PersonRepository {
 
+	public int getSize() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 	
 }
