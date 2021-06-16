@@ -1,13 +1,25 @@
-package de.telekom.sea3.webserver;
+package de.telekom.sea3.webserver.model;
 
 public class Person {
 	
 	private String firstname;
 	private String lastname;
 	private String salutation;
+	private String id;
+
+	// ID
+	// Delete einbauen
+	// DeleteAll
+	// PUT --> Update
+	// Datum Format JJJ-MM-TT ;-)
+	// more things if there is time
 
 	public Person() {} ;
 	
+	public Person(String firstname, String lastname, String salutation) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getFirstname() {
 		return firstname;
 	}
@@ -25,6 +37,14 @@ public class Person {
 	}
 	public void setSalutation(String salutation) {
 		this.salutation = salutation;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	

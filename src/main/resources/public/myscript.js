@@ -23,6 +23,7 @@ function getTxtFromJsonUndPackInsHTML(myjson) {
 		tabelle.insertAdjacentHTML("beforeend", "<tr>"
 			+ `<td> ${i} </td>`
 			+ "<td><img src='" + getIcon(element.salutation) + "'> </td>"
+			+ "<td>" + element.id + "</td>"
 			+ "<td>" + element.salutation + "</td>"
 			+ "<td>" + element.firstname + "</td>"
 			+ "<td>" + element.lastname + "</td>"
@@ -43,15 +44,16 @@ function getIcon(salutation) {
 
 function onSubmitClick(event) {
 	event.preventDefault();          // verhindert GET Request
+	var id = document.getElementById("id").value
+	var salutation = document.getElementById("salutation").value
 	var firstname = document.getElementById("firstname").value
 	var lastname = document.getElementById("lastname").value
-	var salutation = document.getElementById("salutation").value
 	
 //	var person = {salutation: salutation, fistname:firstname, lastname:lastname};
-	var jsondata = `{salutation: "${salutation}", firstname: "${firstname}", lastname: "${lastname}"}`;
+	var jsondata = `{ "id": "${id}", "salutation": "${salutation}", "firstname": "${firstname}", "lastname": "${lastname}"}`;
 	console.log(jsondata);
 
-	fetch("http://localhost:8080/submitPerson", {
+	fetch("http://localhost:8080/json/person", {
  		method: 'POST',
   		body: jsondata,
 		headers: {
@@ -63,6 +65,6 @@ var input = document.getElementById("submitButton");
 input.addEventListener("click", onSubmitClick);
 //console.log(input);
 
-fetch("http://localhost:8080/personen.json")
+fetch("http://localhost:8080/json/persons/all")
 	.then(getJson) 								//  entspricht: .then( irgendwas => irgendwas.json() )
 	.then(getTxtFromJsonUndPackInsHTML)		// entpricht: cell.textContent = myjson.personen[0].vorname);

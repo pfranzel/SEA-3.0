@@ -3,14 +3,19 @@ package de.telekom.sea3.webserver.view;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
+import de.telekom.sea3.webserver.model.Person;
 import de.telekom.sea3.webserver.model.Personen;
+import de.telekom.sea3.webserver.model.Size;
 import de.telekom.sea3.webserver.service.PersonService;
 
-@Controller
+@RestController
 public class PersonRestController {
-
 
 	private PersonService personService;
 
@@ -20,55 +25,42 @@ public class PersonRestController {
 		this.personService = personService;
 	}
 
-
-	/** URL: <a href="http://localhost:8080/json/persons/all">the url...</a>
+	/**
+	 * URL: <a href="http://localhost:8080/json/persons/all">the url...</a>
 	 * 
 	 * @return
 	 */
-	// URL:"http://localhost:8080/json/allpersons"
-	@GetMapping("/json/allpersons")
-	@ResponseBody
-	public String getAllPersons() {
+	// URL:"http://localhost:8080/json/persons/all"
+	@GetMapping("/json/persons/all")
+	public Personen getAllPersons() {
 		Personen personen = personService.getAllPersons();
-//		System.out.println(personen.toJson(personen));
-		
-		String string = "{\n"
-				+ "	\"personen\": [\n"
-				+ "		{\n"
-				+ "			\"firstname\": \"Jan\",\n"
-				+ "			\"lastname\": \"Krüger\",\n"
-				+ "			\"salutation\": \"Mr.\"\n"
-				+ "		},\n"
-				+ "		{\n"
-				+ "			\"firstname\": \"Kurt\",\n"
-				+ "			\"lastname\": \"Feller\",\n"
-				+ "			\"salutation\": \"Mr.\"\n"
-				+ "		},\n"
-				+ "		{\n"
-				+ "			\"firstname\": \"Sandra\",\n"
-				+ "			\"lastname\": \"Bert\",\n"
-				+ "			\"salutation\": \"Mrs.\"\n"
-				+ "		}\n"
-				+ "	]\n"
-				+ "}";
-
-		return string;
+		return personen;
 	}
-	/** URL: <a href="http://localhost:8080/json/persons/all">the url...</a>
+
+	/**
+	 * URL: <a href="http://localhost:8080/json/persons/size">the url...</a>
 	 * 
 	 * @return
 	 */
 	// URL:"http://localhost:8080/json/persons/size"
 	@GetMapping("/json/persons/size")
-	@ResponseBody
-	public String getSize() {
-		int size = personService.getSize();
-//		System.out.println(personen.toJson(personen));
-		
-		String stringNr = String.format("{\n"
-				+ "	\"size\": %d\n"
-				+ "}",size);
+	public Size getSize() {
+		return new Size(personService.getSize());
+	}
 
-		return stringNr;
+	/**
+	 * URL: <a href="http://localhost:8080/json/persons/size">the url...</a>
+	 * 
+	 * @return
+	 */
+	// URL:"http://localhost:8080/json/persons/42"
+	@GetMapping("/json/persons/{id}")
+	public Person getPerson(@PathVariable("id") int id) {
+		return personService.get(id);
+	}
+
+	@PostMapping(path = "json/person")
+	public Person addPerson(@RequestBody Person person) {
+		return personService.add(person);
 	}
 }
