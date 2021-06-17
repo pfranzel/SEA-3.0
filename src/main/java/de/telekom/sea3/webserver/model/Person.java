@@ -5,7 +5,7 @@ public class Person {
 	private String firstname;
 	private String lastname;
 	private String salutation;
-	private String id;
+	private Integer id;
 
 	// ID
 	// Delete einbauen
@@ -14,7 +14,7 @@ public class Person {
 	// Datum Format JJJ-MM-TT ;-)
 	// more things if there is time
 
-	public Person() {} ;
+	public Person() {}
 	
 	public Person(String firstname, String lastname, String salutation) {
 		// TODO Auto-generated constructor stub
@@ -39,14 +39,13 @@ public class Person {
 		this.salutation = salutation;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	
 	
 }
  

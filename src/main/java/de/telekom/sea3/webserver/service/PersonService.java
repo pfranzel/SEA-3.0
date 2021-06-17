@@ -9,7 +9,7 @@ import de.telekom.sea3.webserver.repo.PersonRepository;
 
 @Service
 public class PersonService {
-	
+
 	private PersonRepository personRepository;
 
 	@Autowired
@@ -23,6 +23,10 @@ public class PersonService {
 	public int getSize() {
 		return personRepository.getSize();
 	}
+	
+	public int getMaxId() {
+		return personRepository.getMaxId();
+	}
 
 	public Personen getAllPersons() {
 		return new Personen(personRepository.getAll());
@@ -30,12 +34,24 @@ public class PersonService {
 
 	public Person get(int id) {
 		
-		return new Person("Max","Mustermann","Herr");
+//		return new Person("Max","Mustermann","Herr");
+		return personRepository.get(id);
 	}
 
 	public Person add(Person person) {
 		personRepository.add(person);
-		System.out.println("Person wurde angelegt!");
+		System.out.println("Person was created!");
 		return person;
+	}
+	
+	public Person delete(int id) {
+		System.out.println("Person with ID: \"" + id + "\" will be deleted  ");
+		personRepository.delete(id);
+		return null;
+	}
+	
+	public boolean clear() {
+		System.out.println("Cleanup the list completely");
+		return personRepository.clear();
 	}
 }

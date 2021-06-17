@@ -21,9 +21,9 @@ function getTxtFromJsonUndPackInsHTML(myjson) {
 		// neue Zeile am Ende der exist. Tabelle anfügen
 		i++;
 		tabelle.insertAdjacentHTML("beforeend", "<tr>"
-			+ `<td> ${i} </td>`
-			+ "<td><img src='" + getIcon(element.salutation) + "'> </td>"
+//			+ `<td> ${i} </td>`
 			+ "<td>" + element.id + "</td>"
+			+ "<td><img src='" + getIcon(element.salutation) + "'> </td>"
 			+ "<td>" + element.salutation + "</td>"
 			+ "<td>" + element.firstname + "</td>"
 			+ "<td>" + element.lastname + "</td>"
@@ -44,26 +44,72 @@ function getIcon(salutation) {
 
 function onSubmitClick(event) {
 	event.preventDefault();          // verhindert GET Request
-	var id = document.getElementById("id").value
+	
 	var salutation = document.getElementById("salutation").value
 	var firstname = document.getElementById("firstname").value
 	var lastname = document.getElementById("lastname").value
 	
-//	var person = {salutation: salutation, fistname:firstname, lastname:lastname};
-	var jsondata = `{ "id": "${id}", "salutation": "${salutation}", "firstname": "${firstname}", "lastname": "${lastname}"}`;
-	console.log(jsondata);
 
-	fetch("http://localhost:8080/json/person", {
- 		method: 'POST',
-  		body: jsondata,
-		headers: {
-    		'Content-Type': 'application/json'
-  	}});
+/*	fetch("http://localhost:8080/json/persons/size")
+			.then( response => response.json())
+			.then( response => {
+    			var id = response["size"];
+				var jsondata = `{"id": "${id}", "salutation": "${salutation}", "firstname": "${firstname}", "lastname": "${lastname}"}`;
+				console.log(jsondata);
+    			return fetch("http://localhost:8080/json/person", {
+ 						method: 'POST',
+  						body: jsondata,
+						headers: {
+    					'Content-Type': 'application/json'
+  						}});
+			})
+	//		.then( response => response.json())
+	//		.then( mydata => processdata(mydata))
+*/
+fetch("http://localhost:8080/json/persons/maxid")
+			.then( response => response.json())
+			.then( response => {
+    			var id = response["size"];
+				var jsondata = `{"id": "${id}", "salutation": "${salutation}", "firstname": "${firstname}", "lastname": "${lastname}"}`;
+				console.log(jsondata);
+    			return fetch("http://localhost:8080/json/person", {
+ 						method: 'POST',
+  						body: jsondata,
+						headers: {
+    					'Content-Type': 'application/json'
+  						}});
+			})
+	//		.then( response => response.json())
+	//		.then( mydata => processdata(mydata))
+	
 }
 
 var input = document.getElementById("submitButton");
 input.addEventListener("click", onSubmitClick);
 //console.log(input);
+
+function onDeleteByIdClick(event) {
+	event.preventDefault();          // verhindert GET Request
+	var delid = document.getElementById("delid").value
+	
+	fetch("http://localhost:8080/json/persons/" + delid, {
+		method: "DELETE"
+	});
+}
+	
+var del = document.getElementById("deleteByIdButton");
+del.addEventListener("click", onDeleteByIdClick );
+console.log(delid);
+
+function clear(event) {
+	event.preventDefault();          // verhindert GET Request
+	fetch("http://localhost:8080/json/persons/all", {
+		method: "DELETE"
+	});
+}
+	
+var clearall = document.getElementById("clearButton");
+clearall.addEventListener("click", clear );
 
 fetch("http://localhost:8080/json/persons/all")
 	.then(getJson) 								//  entspricht: .then( irgendwas => irgendwas.json() )
