@@ -2,8 +2,9 @@ package de.telekom.sea3.webserver.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import de.telekom.sea3.webserver.service.PersonService;
 
@@ -22,13 +23,23 @@ public class PersonHtmlController {
 		System.out.println("PersonService: " + personService.toString());
 	}
 
-	// URL:"http://localhost:8080/size"
-	@GetMapping("/size")
-	@ResponseBody
+	// URL:"http://localhost:8080/count"
+	@GetMapping("/count")
 	public String getSize() {
 
-		String string = String.format(HTMLTEMPLATE, personService.getSize());
+		String string = "count";
 
 		return string;
 	}
+
+	@GetMapping("/")
+	public String home(Model model) {
+	
+	    String name = "Peter";
+	
+	    model.addAttribute("name", name);
+	
+	    return "home";
+	}
+
 }
