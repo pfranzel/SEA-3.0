@@ -7,6 +7,7 @@
 <body>
     <h1>Hello World!</h1>
     <h1 th:text="${name}">Hello World!</h1>
-    <h1 th:text="|Hello ${name}!|">Hello World!</h1>
+    <h1> Hello <span th:text="${name}">0</span></h1>
+    <h1> Size: <span th:text="${size}">0</span></h1>
 </body>
 </html>

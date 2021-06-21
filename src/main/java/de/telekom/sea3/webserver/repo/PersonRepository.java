@@ -33,7 +33,8 @@ public class PersonRepository {
 		}
 
 	public boolean add(Person person) {
-		personen.add(getMaxId(), person);
+//		personen.add(getMaxId(), person);
+		personen.add(person);
 //		return personen.add(person);
 		return true;
 	}

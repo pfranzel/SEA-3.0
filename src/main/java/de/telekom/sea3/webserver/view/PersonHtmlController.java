@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import de.telekom.sea3.webserver.model.Personen;
 import de.telekom.sea3.webserver.service.PersonService;
 
 @Controller
@@ -23,6 +24,14 @@ public class PersonHtmlController {
 		System.out.println("PersonService: " + personService.toString());
 	}
 
+	@GetMapping("/home")
+	public String home(Model model,
+			@RequestParam(value = "name", required = false, defaultValue = "World") String name) {
+		model.addAttribute("name", name);
+
+		return "home";
+	}
+
 	// URL:"http://localhost:8080/count"
 	@GetMapping("/count")
 	public String getSize() {
@@ -32,14 +41,19 @@ public class PersonHtmlController {
 		return string;
 	}
 
-	@GetMapping("/")
-	public String home(Model model) {
-	
-	    String name = "Peter";
-	
-	    model.addAttribute("name", name);
-	
-	    return "home";
+	@GetMapping("/size")
+	public String getSize(Model model,
+			@RequestParam(value = "name", required = false, defaultValue = "World") String name) {
+		model.addAttribute("size", personService.getSize());
+
+		return "home";
+	}
+
+	@GetMapping("/personen")
+	public String getpersonen(Model model) {
+		Personen personen = personService.getAllPersons();
+		model.addAttribute("personenList", personen);
+		return "personen";
 	}
 
 }

@@ -50,11 +50,29 @@ function onSubmitClick(event) {
 	var lastname = document.getElementById("lastname").value
 	
 
-/*	fetch("http://localhost:8080/json/persons/size")
+	/* fetch("http://localhost:8080/json/persons/size")
+			.then( response => response.json())
+			.then( response => {
+    			var id = response["size"]; */
+				var id = 1;
+				var jsondata = `{"id": "${id}", "salutation": "${salutation}", "firstname": "${firstname}", "lastname": "${lastname}"}`;
+				console.log(jsondata);
+    			return fetch("http://localhost:8080/json/person", {
+ 						method: 'POST',
+  						body: jsondata,
+						headers: {
+    					'Content-Type': 'application/json'
+  						}});
+	//		})
+	//		.then( response => response.json())
+	//		.then( mydata => processdata(mydata))
+
+
+/* fetch("http://localhost:8080/json/persons/maxid")
 			.then( response => response.json())
 			.then( response => {
     			var id = response["size"];
-				var jsondata = `{"id": "${id}", "salutation": "${salutation}", "firstname": "${firstname}", "lastname": "${lastname}"}`;
+				var jsondata = `{"id": "1", "salutation": "${salutation}", "firstname": "${firstname}", "lastname": "${lastname}"}`;
 				console.log(jsondata);
     			return fetch("http://localhost:8080/json/person", {
  						method: 'POST',
@@ -65,24 +83,8 @@ function onSubmitClick(event) {
 			})
 	//		.then( response => response.json())
 	//		.then( mydata => processdata(mydata))
-*/
-fetch("http://localhost:8080/json/persons/maxid")
-			.then( response => response.json())
-			.then( response => {
-    			var id = response["size"];
-				var jsondata = `{"id": "${id}", "salutation": "${salutation}", "firstname": "${firstname}", "lastname": "${lastname}"}`;
-				console.log(jsondata);
-    			return fetch("http://localhost:8080/json/person", {
- 						method: 'POST',
-  						body: jsondata,
-						headers: {
-    					'Content-Type': 'application/json'
-  						}});
-			})
-	//		.then( response => response.json())
-	//		.then( mydata => processdata(mydata))
-	
-}
+	*/
+} 
 
 var input = document.getElementById("submitButton");
 input.addEventListener("click", onSubmitClick);

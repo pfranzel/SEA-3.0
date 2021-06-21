@@ -48,17 +48,6 @@ public class PersonRestController {
 	}
 	
 	/**
-	 * URL: <a href="http://localhost:8080/json/persons/maxid">the url...</a>
-	 * 
-	 * @return
-	 */
-	// URL:"http://localhost:8080/json/persons/size"
-	@GetMapping("/json/persons/maxid")
-	public int getMaxId() {
-		return personService.getAllPersons().getPersonen().size();
-	}
-
-	/**
 	 * URL: <a href="http://localhost:8080/json/persons/size">the url...</a>
 	 * 
 	 * @return
