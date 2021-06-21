@@ -23,7 +23,10 @@ table {
     vertical-align: top;
     border-color: #dee2e6;
     text-align: center;
-    }
+/*      background-color: #FF00FF; */
+/*      position:fixed; */
+    
+}
 
 th,td{
 	    border: 1px solid #cccccc;
