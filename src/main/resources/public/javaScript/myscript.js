@@ -75,7 +75,7 @@ function onSubmitClick(event) {
 // Update: read from the Browser-JS and push/update to Server (method: PUT)
 function onUpdateClick(event) {
 	event.preventDefault();          // verhindert GET Request
-	
+	var id = document.getElementById("id").value
 	var salutation = document.getElementById("salutation").value
 	var firstname = document.getElementById("firstname").value
 	var lastname = document.getElementById("lastname").value
@@ -83,7 +83,7 @@ function onUpdateClick(event) {
 	var location = document.getElementById("location").value;
 	var email = document.getElementById("email").value;
 
-	var jsondata = `{"salutation": "${salutation}", "firstname": "${firstname}", "lastname": "${lastname}", "birthdate":"${birthdate}", "location":"${location}", "email":"${email}"}`;
+	var jsondata = `{"id": "${id}",  "salutation": "${salutation}", "firstname": "${firstname}", "lastname": "${lastname}", "birthdate":"${birthdate}", "location":"${location}", "email":"${email}"}`;
 	console.log(jsondata);
     
 	return fetch("http://localhost:8080/json/person", {
@@ -130,6 +130,10 @@ var input = document.getElementById("submitButton");
 input.addEventListener("click", onSubmitClick);
 console.log(input);
 	
+var update = document.getElementById("updateButton");
+update.addEventListener("click", onUpdateClick);
+console.log(update);
+
 var del = document.getElementById("deleteByIdButton");
 del.addEventListener("click", onDeleteByIdClick );
 console.log(del);

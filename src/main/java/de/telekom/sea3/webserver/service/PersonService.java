@@ -37,9 +37,21 @@ public class PersonService {
 		return person;
 	}
 	
+	public Person update(Person person) {
+		personRepository.save(person);
+		System.out.println("Person was created!");
+		return person;
+	}
+	
 	public Person delete(long id) {
-		System.out.println("Person with ID: \"" + id + "\" will be deleted  ");
-		personRepository.deleteById(id);
+		System.out.println("Try to delete person with ID: \"" + id );
+		try {
+			personRepository.deleteById(id);
+		} catch (NumberFormatException e) {
+			return null;
+		} catch (Exception e) {
+			System.out.println("Exception: " + e); 		
+		} 
 		return null;
 	}
 	
