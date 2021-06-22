@@ -1,18 +1,12 @@
 //search for unique id=id4711 in index.html
 var para = document.getElementById("id4711");
 para.textContent = "Hello from JavaScript";
-//  fetch("http://localhost:8080/personen.json");
-// var cell = document.getElementById("IdSabine");
-//	fetch("personen.json")
-//		.then( irgendwas => irgendwas.json() )
-//		.then(myjson => console.log(myjson.personen[0].vorname));
-// json einlesen
 
-function getJson(convert2json) { 	// irgendwas beinhaltet json mit allen kommunikations-metadaten
-	return convert2json.json();		// irgendwas.json ist der rheine json-inhalt
+//convert jsonstring to (json)-object
+function getJson(convert2json) { 	
+	return convert2json.json();		 
 }
 
-// celle ersetzen
 function getTxtFromJsonUndPackInsHTML(myjson) {
 	
 	var i = 0;
@@ -60,7 +54,6 @@ function getIcon(salutation) {
 function onSubmitClick(event) {
 	event.preventDefault();          // verhindert GET Request
 	
-//	var id = document.getElementById("id").value
 	var salutation = document.getElementById("salutation").value
 	var firstname = document.getElementById("firstname").value
 	var lastname = document.getElementById("lastname").value
@@ -83,7 +76,6 @@ function onSubmitClick(event) {
 function onUpdateClick(event) {
 	event.preventDefault();          // verhindert GET Request
 	
-//	var id = document.getElementById("id").value
 	var salutation = document.getElementById("salutation").value
 	var firstname = document.getElementById("firstname").value
 	var lastname = document.getElementById("lastname").value
@@ -102,12 +94,6 @@ function onUpdateClick(event) {
   			}});
 } 
 
-
-var input = document.getElementById("submitButton");
-input.addEventListener("click", onSubmitClick);
-console.log(input);
-
-
 function onDeleteByIdClick(event) {
 	event.preventDefault();          // verhindert GET Request
 	var id = document.getElementById("id").value
@@ -117,26 +103,13 @@ function onDeleteByIdClick(event) {
 	});
 }
 
-	
-var del = document.getElementById("deleteByIdButton");
-del.addEventListener("click", onDeleteByIdClick );
-console.log(del);
-
 function clear(event) {
 	event.preventDefault();          // verhindert GET Request
 	fetch("http://localhost:8080/json/persons/all", {
 		method: "DELETE"
 	});
 }
-	
-
-var clearall = document.getElementById("clearButton");
-clearall.addEventListener("click", clear );
-
-fetch("http://localhost:8080/json/persons/all")
-	.then(getJson) 								//  entspricht: .then( irgendwas => irgendwas.json() )
-	.then(getTxtFromJsonUndPackInsHTML)		// entpricht: cell.textContent = myjson.personen[0].vorname);
-	
+		
 function onRefreshClick() {
 	document.getElementById(tbid001).innerHTML="";
 	refreshTable();
@@ -148,6 +121,21 @@ function refreshTable() {
 		.then(getJson) 				  	 // entspricht: .then( irgendwas => irgendwas.json() )
 		.then(getTxtFromJsonUndPackInsHTML)  // entpricht: cell.textContent = myjson.personen[0].vorname);
 }
+
+fetch("http://localhost:8080/json/persons/all")
+	.then(getJson) 								//  entspricht: .then( irgendwas => irgendwas.json() )
+	.then(getTxtFromJsonUndPackInsHTML)		// entpricht: cell.textContent = myjson.personen[0].vorname);
+
+var input = document.getElementById("submitButton");
+input.addEventListener("click", onSubmitClick);
+console.log(input);
+	
+var del = document.getElementById("deleteByIdButton");
+del.addEventListener("click", onDeleteByIdClick );
+console.log(del);
+
+var clearall = document.getElementById("clearButton");
+clearall.addEventListener("click", clear );
 
 //refreshTable();
 
