@@ -33,6 +33,7 @@ function getTxtFromJsonUndPackInsHTML(myjson) {
 				+ "<td>" + item.birthdate + "</td>"
 				+ "<td>" + item.location + "</td>"
 				+ "<td>" + item.email + "</td>"
+				+ "<td>" + item.version + "</td>"
 			+ "</tr>")
 	}
 }
@@ -60,8 +61,10 @@ function onSubmitClick(event) {
     var birthdate = document.getElementById("birthdate").value;
 	var location = document.getElementById("location").value;
 	var email = document.getElementById("email").value;
+	var version = document.getElementById("version").value;
 
-	var jsondata = `{"salutation": "${salutation}", "firstname": "${firstname}", "lastname": "${lastname}", "birthdate":"${birthdate}", "location":"${location}", "email":"${email}"}`;
+
+	var jsondata = `{"salutation": "${salutation}", "firstname": "${firstname}", "lastname": "${lastname}", "birthdate":"${birthdate}", "location":"${location}", "email":"${email}", "version":"${version}"}`;
 	console.log(jsondata);
     
 	return fetch("http://localhost:8080/json/person", {
@@ -82,8 +85,9 @@ function onUpdateClick(event) {
     var birthdate = document.getElementById("birthdate").value;
 	var location = document.getElementById("location").value;
 	var email = document.getElementById("email").value;
+	var version = document.getElementById("version").value;
 
-	var jsondata = `{"id": "${id}",  "salutation": "${salutation}", "firstname": "${firstname}", "lastname": "${lastname}", "birthdate":"${birthdate}", "location":"${location}", "email":"${email}"}`;
+	var jsondata = `{"id": "${id}",  "salutation": "${salutation}", "firstname": "${firstname}", "lastname": "${lastname}", "birthdate":"${birthdate}", "location":"${location}", "email":"${email}", "version":"${version}"}`;
 	console.log(jsondata);
     
 	return fetch("http://localhost:8080/json/person", {
@@ -94,6 +98,15 @@ function onUpdateClick(event) {
   			}});
 } 
 
+function onSearchClick(event) {
+	event.preventDefault();          // verhindert GET Request
+	var id = document.getElementById("id").value
+
+	return fetch("http://localhost:8080/json/persons/" + id, {
+		method: "GET"
+	});
+}
+
 function onDeleteByIdClick(event) {
 	event.preventDefault();          // verhindert GET Request
 	var id = document.getElementById("id").value
@@ -103,7 +116,7 @@ function onDeleteByIdClick(event) {
 	});
 }
 
-function clear(event) {
+function onClearClick(event) {
 	event.preventDefault();          // verhindert GET Request
 	fetch("http://localhost:8080/json/persons/all", {
 		method: "DELETE"
@@ -139,9 +152,11 @@ del.addEventListener("click", onDeleteByIdClick );
 console.log(del);
 
 var clearall = document.getElementById("clearButton");
-clearall.addEventListener("click", clear );
+clearall.addEventListener("click", onClearClick);
 
-//refreshTable();
+var query = document.getElementById("queryButton")
+query.addEventListener("click", onSearchClick)
+	refreshTable();
 
 // Refresh
 document.getElementById("refreshButton").addEventListener("click",onRefreshClick);	

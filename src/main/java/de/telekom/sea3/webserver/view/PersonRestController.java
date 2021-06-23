@@ -51,7 +51,7 @@ public class PersonRestController {
 	}
 	
 	/**
-	 * URL: <a href="http://localhost:8080/json/persons/size">the url...</a>
+	 * URL: <a href="http://localhost:8080/json/persons/<id>">the url...</a>
 	 * 
 	 * @return
 	 */

@@ -10,7 +10,7 @@
 </head>
 <body>
 	<header>
-		<h2>Gruppe SEA - Welle 4</h2>
+		<h2>Our awesome Administration App</h2>
 	</header>
 	<div class="tableFixHead">	
 		<table style="border:1px solid #888a85" class="table table-dark" id="tid001">
@@ -25,6 +25,7 @@
 					<th scope="col">Birthdate</th>
 					<th scope="col">Location</th>
 					<th scope="col">eMail</th>
+					<th scope="col">Version</th>
 				</tr>
 			</thead>
 			<tbody id="tbid001">
@@ -41,7 +42,7 @@
 		</table>
 	</div>
 	<article>		
-		<h4><span class="blink"><strong> >>>  Jetzt hier bei uns anmelden!  <<< </strong></span></h4>
+		<h4><span class="blink"><strong> >>>  Now available - please join to the next session!  <<< </strong></span></h4>
 			<form id="idform">
 				<table class="input">
 					<tr>
@@ -51,9 +52,9 @@
 					<tr> 			
 						<td><label for="id001">Anrede:</label></td>
 						<td><select name="salutation" id="salutation">
-							<option>Mrs.</option>
-							<option>Mr.</option>
-							<option value="Other">Other</option>
+							<option>Mrs</option>
+							<option>Mr</option>
+							<option>Diverse</option>
 						</select></td>
 						<td><label for="firstname">Firstname:</label></td>
 						<td><input type="text" id="firstname" name="firstname"></td> 
@@ -76,10 +77,13 @@
 						</select></td>
 						<td><label for="email">eMail:</label></td>
 						<td><input type="email" id="email" name="email"></td>
+						<td><label for="version">Version:</label></td>
+						<td><input type=text id="version" name="Version"></td>
 					</tr>
 					<tr class="button">
 						<td style="padding-top: 50px" class="button" colspan="6">
 						<input type="submit" id="submitButton" value="Submit">
+						<input type="submit" id="queryButton" value="Search">
 						<input type="submit" id="deleteByIdButton" value="Delete">			
 						<input type="submit" id="updateButton" value="Update">
 						<input type="submit" id="clearButton" value="Delete all">
@@ -95,7 +99,7 @@
 	</div>
 		<div>
   		<p>GUI-Template grateful mostly copied from Baharak :
-  			<a href=https://github.com/bzarei/SEA-3.0>Her Repository :-)</a>
+  			<a href=https://github.com/bzarei/SEA-3.0>To her Repo :-)</a>
   		</p>
 	</div>
 	<footer style="position: absolute; bottom: 10px; width: 100%; background-color: #e10074">

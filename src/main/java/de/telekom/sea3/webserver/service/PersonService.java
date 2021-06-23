@@ -37,6 +37,11 @@ public class PersonService {
 		return person;
 	}
 	
+	public Person search(long id) {
+		System.out.println("Person searched!");
+		return personRepository.findById(id).get();
+	}
+	
 	public Person update(Person person) {
 		personRepository.save(person);
 		System.out.println("Person was created!");
