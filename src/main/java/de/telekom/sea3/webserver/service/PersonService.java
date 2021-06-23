@@ -1,5 +1,7 @@
 package de.telekom.sea3.webserver.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,38 +22,53 @@ public class PersonService {
 		this.personRepository = personRepository;
 	}
 
-	public int getSize() {
-		return personRepository.getSize();
-	}
 	
-	public int getMaxId() {
-		return personRepository.getMaxId();
-	}
-
 	public Personen getAllPersons() {
-		return new Personen(personRepository.getAll());
+		return new Personen(personRepository.findAll());
 	}
 
-	public Person get(int id) {
-		
-//		return new Person("Max","Mustermann","Herr");
-		return personRepository.get(id);
+	public Optional<Person> getById(Long id) {
+		return personRepository.findById(id);
 	}
 
 	public Person add(Person person) {
-		personRepository.add(person);
+		personRepository.save(person);
 		System.out.println("Person was created!");
 		return person;
 	}
 	
-	public Person delete(int id) {
-		System.out.println("Person with ID: \"" + id + "\" will be deleted  ");
-		personRepository.delete(id);
+	public Person search(long id) {
+		System.out.println("Person searched!");
+		return personRepository.findById(id).get();
+	}
+	
+	public Person update(Person person) {
+		personRepository.save(person);
+		System.out.println("Person was created!");
+		return person;
+	}
+	
+	public Person delete(long id) {
+		System.out.println("Try to delete person with ID: \"" + id );
+		try {
+			personRepository.deleteById(id);
+		} catch (NumberFormatException e) {
+			return null;
+		} catch (Exception e) {
+			System.out.println("Exception: " + e); 		
+		} 
 		return null;
 	}
 	
-	public boolean clear() {
+	public void clear() {
 		System.out.println("Cleanup the list completely");
-		return personRepository.clear();
+		personRepository.deleteAll();
+	}
+
+
+	public long count() {
+		long count = personRepository.count();
+		System.out.println("There are " + count + "entries in the table");
+		return count;
 	}
 }

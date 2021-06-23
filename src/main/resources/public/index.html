@@ -1,86 +1,112 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<link rel="stylesheet" href="css/mycss.css">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SEA Kurs</title>
-<script src="myscript.js" type="module"></script>
-<link rel="shortcut icon" href="favicon.ico" type="image/gif" sizes="16x16">
+	<link rel="stylesheet" href="css/mycss.css">
+	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<title>SEA Kurs</title>
+	<script src="javaScript/myscript.js" type="module"></script>   
 </head>
 <body>
-	<h1>Group SEA - Welle 4</h1>
-	<p>List of Persons:</p>
-	<table class="table table-dark" id="tid001">
-		<tr>
-			<th>Id</th>
-			<th>Pic</th>
-			<th>Salutation</th>
-			<th>Firstname</th>
-			<th>Lastname</th>
-		</tr>
-		
-		<!-- tr>
-			<td>01</td>
-			<td><img src="images/frau.png"></td>
-			<td id="id003">Frau</td>
-			<td id="id001">Sabine</td>
-			<td id="id002">Müller</td>
-		</tr>
-		<tr>
-			<td>02</td>
-			<td><img src="images/mann.png"></td>
-			<td>Herr</td>
-			<td>Paul</td>
-			<td>Paulsen</td>
-		</tr>
-		<tr>
-			<td>03</td>
-			<td><img src="images/mann.png"></td>
-			<td>Herr</td>
-			<td>Micki</td>
-			<td>Maus</td>
-		</tr -->
-	</table>
-
-	<!--div>Melde die bei uns!</div>
-	<center>
-		<form>
-			<label for="salut"> Anrede: </label><br> <input type="text"
-				id="salut" name="salut"><br> <label for="fname">
-				Vorname: </label><br> <input type="text" id="fname" name="fname"><br>
-
-			<label for="lname"> Nachname: </label><br> <input type="text"
-				id="lname" name="lname"><br> <label for="eMail">
-				E-Mail: </label><br> <input type="text" id="eMail" name="eMail"><br>
-
-			<input type="button" value="Submit">
-		</form>
-	</center -->
-	<h3>Join us at our SEA2.x</h3>
-	<form id="submit">
-		<label for="id">ID:</label> <br> 
-			<input type="text" id="id" name="id"> <br> 
-		<label for="firstname">First name:</label> <br> 
-			<input type="text" id="firstname" name="firstname"> <br> 
-		<label for="lastname">Lastname:</label> <br> 
-			<input type="text" id="lastname" name="lastname"> <br> 
-		<label for="salutation">Salutation:</label> <br> 
-			<input type="text" id="salutation" name="salutation"> <br> 
-		<input id="submitButton" type="submit" value="Submit">		
-	</form>
-	
-	<form id="delete">
-			<label for="delid">ID to delete:</label> <br> 
-				<input type="text" id="delid" name="delid"> <br> 
-			<input id="deleteByIdButton" type="submit" value="deleteById">
-	</form>
-	
-		<form id="clear">
-			<input id="clearButton" type="submit" value="clearAll">
-	</form>
-
-	<p id="id4711">Abschnitt  2</p>
-
+	<header>
+		<h2>Our awesome Administration App</h2>
+	</header>
+	<div class="tableFixHead">	
+		<table style="border:1px solid #888a85" class="table table-dark" id="tid001">
+			<thead class="hideit" id="thid001"> 
+				<tr> 
+					<th scope="col">#</th>
+					<th scope="col">Profile</th>
+					<th scope="col">ID</th>
+					<th scope="col">Salutation</th>
+					<th scope="col">Firstname</th>
+					<th scope="col">Lastname</th>
+					<th scope="col">Birthdate</th>
+					<th scope="col">Location</th>
+					<th scope="col">eMail</th>
+					<th scope="col">Version</th>
+				</tr>
+			</thead>
+			<tbody id="tbid001">
+			<!--    
+				<tr>
+					<td>03</td>
+					<td><img src="images/man.png" width=25px height=25px></td>
+					<td id="IdAnredeHerr">Herr</td>
+					<td id="IdVornameMicki">Micki</td>
+					<td id="IdNachnameMaus">Maus</td>
+				</tr>
+			-->
+			</tbody>
+		</table>
+	</div>
+	<article>		
+		<h4><span class="blink"><strong> >>>  Now available - please join to the next session!  <<< </strong></span></h4>
+			<form id="idform">
+				<table class="input">
+					<tr>
+						<td><label for="id000">ID</label></td>
+						<td><input type="text" id="id" name="id"></td>
+					</tr>
+					<tr> 			
+						<td><label for="id001">Anrede:</label></td>
+						<td><select name="salutation" id="salutation">
+							<option>Mrs</option>
+							<option>Mr</option>
+							<option>Diverse</option>
+						</select></td>
+						<td><label for="firstname">Firstname:</label></td>
+						<td><input type="text" id="firstname" name="firstname"></td> 
+						<td><label for="lastname">Lastname:</label></td>
+						<td><input type="text" id="lastname" name="lastname"></td>
+					</tr>	
+					<tr>
+						<td><label for="birthdate">Birthdate:</label></td>
+						<td><input type="date" id="birthdate" name="birthdate"></td>
+						<td><label for="location">Location:</label></td>
+						<td><select name="location" id="location">
+							<option>Berlin</option>
+							<option>Bonn</option>
+							<option>Budapest</option>
+							<option>Darmstadt</option>
+							<option>Koeln</option>
+							<option>Krefeld</option>
+							<option>Muenster</option>
+							<option>Magdeburg</option>
+						</select></td>
+						<td><label for="email">eMail:</label></td>
+						<td><input type="email" id="email" name="email"></td>
+						<td><label for="version">Version:</label></td>
+						<td><input type=text id="version" name="Version"></td>
+					</tr>
+					<tr class="button">
+						<td style="padding-top: 50px" class="button" colspan="6">
+						<input type="submit" id="submitButton" value="Submit">
+						<input type="submit" id="queryButton" value="Search">
+						<input type="submit" id="deleteByIdButton" value="Delete">			
+						<input type="submit" id="updateButton" value="Update">
+						<input type="submit" id="clearButton" value="Delete all">
+						<input type="submit" id="refreshButton" value="Refresh"></td>
+					</tr>
+				</table>
+			</form>				
+	</article>
+	<div>
+  		<p>to see template for persons click:
+  			<a href=/personen>here</a>
+  		</p>
+	</div>
+		<div>
+  		<p>GUI-Template grateful mostly copied from Baharak :
+  			<a href=https://github.com/bzarei/SEA-3.0>To her Repo :-)</a>
+  		</p>
+	</div>
+	<footer style="position: absolute; bottom: 10px; width: 100%; background-color: #e10074">
+  		<img src="images/telekom.png" > <br/>
+  		<a href="https://www.telekom.de/start" id="id4711" style="color: #ffffff">
+			<button>Werbung</button>	
+		</a>
+  	</footer>		
 </body>
 </html>

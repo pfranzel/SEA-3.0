@@ -44,7 +44,7 @@ public class PersonHtmlController {
 	@GetMapping("/size")
 	public String getSize(Model model,
 			@RequestParam(value = "name", required = false, defaultValue = "World") String name) {
-		model.addAttribute("size", personService.getSize());
+		model.addAttribute("size", personService.count());
 
 		return "home";
 	}

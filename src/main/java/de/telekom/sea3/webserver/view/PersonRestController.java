@@ -1,10 +1,13 @@
 package de.telekom.sea3.webserver.view;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,18 +47,18 @@ public class PersonRestController {
 	// URL:"http://localhost:8080/json/persons/maxsize"
 	@GetMapping("/json/persons/maxsize")
 	public Size getMaxSize() {
-		return new Size(personService.getMaxId());
+		return new Size(personService.count());
 	}
 	
 	/**
-	 * URL: <a href="http://localhost:8080/json/persons/size">the url...</a>
+	 * URL: <a href="http://localhost:8080/json/persons/<id>">the url...</a>
 	 * 
 	 * @return
 	 */
 	// URL:"http://localhost:8080/json/persons/42"
 	@GetMapping("/json/persons/{id}")
-	public Person getPerson(@PathVariable("id") int id) {
-		return personService.get(id);
+	public Optional<Person> getPerson(@PathVariable("id") long id) {
+		return personService.getById(id);
 	}
 	
 	/**
@@ -71,6 +74,17 @@ public class PersonRestController {
 	
 	/**
 	 * 
+	 * URL: <a href="http://localhost:8080/json/person">the url...</a>
+	 * 
+	 * @return
+	 */
+	@PutMapping(path = "json/person")
+	public Person updatePerson(@RequestBody Person person) {
+		return personService.update(person);
+	}
+	
+	/**
+	 * 
 	 * URL: <a href="http://localhost:8080/json/persons/">the url...</a>
 	 * 
 	 * @return
@@ -81,8 +95,8 @@ public class PersonRestController {
 	}
 	
 	@DeleteMapping(path = "json/persons/all")
-	public boolean clearPerson() {
-		return personService.clear();
+	public void clearPerson() {
+		personService.clear();
 	}
 	
 }

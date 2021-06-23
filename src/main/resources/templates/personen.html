@@ -2,15 +2,19 @@
 <html lang=de xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset=utf-8>
-		<title>Title</title>
+		<title>Title Person</title>
 		<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
 	</head>
 	<body>
 		<ul th:each="person : ${PersonenList}">
 			<li th:text="${person.id}">ID</li>
-			<li th:text="${person.anrede}">Anrede</li>
-			<li th:text="${person.vorname}">Vorname</li>
-			<li th:text="${person.nachname}">Nachname</li>
+			<li th:text="${person.salutation}">Salutation</li>
+			<li th:text="${person.firstname}">Firstname</li>
+			<li th:text="${person.lastname}">Lastname</li>
+			<li th:text="${person.birthdate}">Birthdate</li>
+			<li th:text="${person.location}">Location</li>
+			<li th:text="${person.email}">eMail</li>
+			<li th:text="${person.lastname}">Lastname</li>
 		</ul>
 		<a th:href="@{/index.html}">Home page SEA</a>
 	</body>
