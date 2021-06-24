@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import de.telekom.sea3.webserver.model.Person;
-import de.telekom.sea3.webserver.model.Personen;
+import de.telekom.sea3.webserver.model.Persons;
 import de.telekom.sea3.webserver.repo.PersonRepository;
 
 @Service
@@ -23,8 +23,8 @@ public class PersonService {
 	}
 
 	
-	public Personen getAllPersons() {
-		return new Personen(personRepository.findAll());
+	public Persons getAllPersons() {
+		return new Persons(personRepository.findAll());
 	}
 
 	public Optional<Person> getById(Long id) {

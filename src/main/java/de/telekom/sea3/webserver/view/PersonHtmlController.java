@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import de.telekom.sea3.webserver.model.Personen;
+import de.telekom.sea3.webserver.model.Persons;
 import de.telekom.sea3.webserver.service.PersonService;
 
 @Controller
@@ -51,8 +51,8 @@ public class PersonHtmlController {
 
 	@GetMapping("/personen")
 	public String getpersonen(Model model) {
-		Personen personen = personService.getAllPersons();
-		model.addAttribute("personenList", personen);
+		Persons persons = personService.getAllPersons();
+		model.addAttribute("personenList", persons);
 		return "personen";
 	}
 

@@ -3,11 +3,11 @@ package de.telekom.sea3.webserver.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Personen {
+public class Persons {
 
 	private List<Person> personen = new ArrayList<Person>();
 
-	public Personen(Iterable<Person> iterable) {
+	public Persons(Iterable<Person> iterable) {
 		this.personen = (List<Person>) iterable;
 	}
 

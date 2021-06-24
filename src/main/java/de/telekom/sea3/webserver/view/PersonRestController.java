@@ -12,21 +12,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import de.telekom.sea3.webserver.model.Person;
-import de.telekom.sea3.webserver.model.Personen;
+import de.telekom.sea3.webserver.model.Persons;
 import de.telekom.sea3.webserver.model.Size;
 import de.telekom.sea3.webserver.service.PersonService;
+import io.micrometer.core.instrument.MeterRegistry;
 
 @RestController
 public class PersonRestController {
 
 	private PersonService personService;
 
+	
 	@Autowired
 	public PersonRestController(PersonService personService) {
 		super();
 		this.personService = personService;
 	}
 
+//    public PersonRestController(MeterRegistry registry) {
+//        // constructs a gauge to monitor the size of the population
+//        registry.mapSize("persons_count", persons);
+//    }
+
+	
 	/**
 	 * URL: <a href="http://localhost:8080/json/persons/all">the url...</a>
 	 * 
@@ -34,9 +42,9 @@ public class PersonRestController {
 	 */
 	// URL:"http://localhost:8080/json/persons/all"
 	@GetMapping("/json/persons/all")
-	public Personen getAllPersons() {
-		Personen personen = personService.getAllPersons();
-		return personen;
+	public Persons getAllPersons() {
+		Persons persons = personService.getAllPersons();
+		return persons;
 	}
 
 	/**
