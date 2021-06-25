@@ -1,8 +1,9 @@
 package de.telekom.sea3.webserver.view;
 
-import java.util.Optional;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,13 +16,16 @@ import de.telekom.sea3.webserver.model.Person;
 import de.telekom.sea3.webserver.model.Persons;
 import de.telekom.sea3.webserver.model.Size;
 import de.telekom.sea3.webserver.service.PersonService;
-import io.micrometer.core.instrument.MeterRegistry;
+
+
 
 @RestController
+@EnableAutoConfiguration
+
 public class PersonRestController {
 
 	private PersonService personService;
-
+    private static final Logger log = LoggerFactory.getLogger(PersonRestController.class);
 	
 	@Autowired
 	public PersonRestController(PersonService personService) {
@@ -43,7 +47,9 @@ public class PersonRestController {
 	// URL:"http://localhost:8080/json/persons/all"
 	@GetMapping("/json/persons/all")
 	public Persons getAllPersons() {
+        log.info("Inside getAllPersons() method.");
 		Persons persons = personService.getAllPersons();
+        log.info("getAllPersons has been finished");
 		return persons;
 	}
 
@@ -55,7 +61,10 @@ public class PersonRestController {
 	// URL:"http://localhost:8080/json/persons/maxsize"
 	@GetMapping("/json/persons/maxsize")
 	public Size getMaxSize() {
-		return new Size(personService.count());
+        log.info("Inside getAllPersons() method.");
+        Size size = new Size(personService.count());
+        log.info("getMaxSize() has been finished");
+		return size;
 	}
 	
 	/**
@@ -65,8 +74,11 @@ public class PersonRestController {
 	 */
 	// URL:"http://localhost:8080/json/persons/42"
 	@GetMapping("/json/persons/{id}")
-	public Optional<Person> getPerson(@PathVariable("id") long id) {
-		return personService.getById(id);
+	public Person getPerson(@PathVariable("id") long id) {
+        log.info("Inside getPerson() method.");
+		Person person = personService.getById(id).get();
+        log.info("getPerson() has been finished");
+        return person;
 	}
 	
 	/**
@@ -77,7 +89,10 @@ public class PersonRestController {
 	 */
 	@PostMapping(path = "json/person")
 	public Person addPerson(@RequestBody Person person) {
-		return personService.add(person);
+        log.info("Inside addPerson() method.");
+		personService.add(person);
+        log.info("getPerson() has been finished");
+        return person;
 	}
 	
 	/**
@@ -88,7 +103,10 @@ public class PersonRestController {
 	 */
 	@PutMapping(path = "json/person")
 	public Person updatePerson(@RequestBody Person person) {
-		return personService.update(person);
+        log.info("Inside updatePerson() method.");
+		personService.update(person);
+        log.info("updatePerson() has been finished");
+		return person;
 	}
 	
 	/**
@@ -99,12 +117,24 @@ public class PersonRestController {
 	 */
 	@DeleteMapping(path = "json/persons/{id}")
 	public Person removePerson(@PathVariable("id") int id) {
-		return personService.delete(id);
+        log.info("Inside removePerson() method.");
+		Person person =  personService.delete(id);
+        log.info("removePerson() has been finished");
+        return person;
 	}
 	
 	@DeleteMapping(path = "json/persons/all")
 	public void clearPerson() {
+        log.info("Inside clearPerson() method.");
 		personService.clear();
+        log.info("clearPerson() has been finished");
 	}
+	
+//	@GetMapping("/json/select")
+//	public Persons searchNachOrt(@RequestParam(name="location", required=false) String location) {
+//		Persons persons = personService.selectPersons(location);
+//		logger.info("Location: " + location);
+//		return persons;
+//	}
 	
 }

@@ -145,7 +145,7 @@ console.log(input);
 	
 var update = document.getElementById("updateButton");
 update.addEventListener("click", onUpdateClick);
-console.log(update);
+console.log();
 
 var del = document.getElementById("deleteByIdButton");
 del.addEventListener("click", onDeleteByIdClick );
@@ -156,7 +156,7 @@ clearall.addEventListener("click", onClearClick);
 
 var query = document.getElementById("queryButton")
 query.addEventListener("click", onSearchClick)
-	refreshTable();
+//	refreshTable();
 
 // Refresh
 document.getElementById("refreshButton").addEventListener("click",onRefreshClick);	

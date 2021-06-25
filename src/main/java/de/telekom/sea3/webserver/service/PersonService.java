@@ -71,4 +71,13 @@ public class PersonService {
 		System.out.println("There are " + count + "entries in the table");
 		return count;
 	}
+	
+
+//	public Persons selectPersonen(String location) {
+//		Persons ps = new Persons(null);
+//		for (Person p : personRepository.selectPersonen(location)) {
+//			ps.getPersonen().add(p);
+//		}
+//		return ps;
+//	}
 }
